@@ -29,18 +29,15 @@
     },
     "default_popup": "popup.html"
   },
-  "permissions": [
-    "activeTab",
-    "storage"
-  ],
+  "permissions": ["activeTab", "declarativeContent", "storage"],
   "background": {
     "scripts": ["js/background.js"],
     "persistent": true
   },
   "content_scripts": [
     {
-      "matches": [ "http://*/*", "https://*/*", "file://*/*" ],
-      "js": [ "js/content.js" ]
+      "matches": ["http://*/*", "https://*/*", "file://*/*"],
+      "js": ["js/content.js"]
     }
   ],
   "commands": {
@@ -51,6 +48,15 @@
         "chromeos": "Ctrl+Shift+F",
         "linux": "Ctrl+Shift+F"
       }
+    },
+    "search": {
+      "suggested_key": {
+        "mac": "Command+Shift+S",
+        "windows": "Ctrl+Shift+S",
+        "chromeos": "Ctrl+Shift+S",
+        "linux": "Ctrl+Shift+S"
+      },
+      "description": "Search google for text"
     }
   },
   "options_page": "options.html"
