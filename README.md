@@ -17,8 +17,8 @@ Enhanced web searching and page finding
 
 ## Installation
 
-Go to https://chrome.google.com/webstore/detail/chrome-regex-search/bpelaihoicobbkgmhcbikncnpacdbknn?hl=en&gl=US
-Click 'Add to Chrome'
+- Go to https://chrome.google.com/webstore/detail/chrome-regex-search/bpelaihoicobbkgmhcbikncnpacdbknn?hl=en&gl=US
+- Click 'Add to Chrome'
 
 ## Screenshots
 
@@ -36,25 +36,19 @@ Click 'Add to Chrome'
 
 ## Keyboard Shortcuts
 
-<b>CTRL+SHIFT+S</b> : Search the web for selected text
-<br />
-<b>CTRL+SHIFT+F</b> : Open popup (and search selected text if any is selected)
-<br />
-<b>On MacOS</b> : Use COMMAND instead of CTRL
-<br />
-<b>ENTER</b> : Select next search match on page
-<br />
-<b>SHIFT+ENTER</b> : Select previous search match on page
+- <b>CTRL+SHIFT+S</b> : Search the web for selected text
+  - <b>On MacOS</b> : Use COMMAND instead of CTRL
+- <b>CTRL+SHIFT+F</b> : Open popup (and search selected text if any is selected)
+  - <b>On MacOS</b> : Use COMMAND instead of CTRL
+- <b>ENTER</b> : Select next search match on page
+- <b>SHIFT+ENTER</b> : Select previous search match on page
 
-<b>Customize the keyboard shortcuts:</b>
-<br />
-In your browser, go to chrome://extensions/shortcuts
-<br />
-Scroll to Search Utils
-<br />
-Click in the box next to 'Activate the extension'
-<br />
-Type your custom command (ie CTRL+SHIFT+F)
+### Customize the keyboard shortcuts
+
+- In your browser, go to chrome://extensions/shortcuts
+- Scroll to Search Utils
+- Click in the box next to 'Activate the extension'
+- Type your custom command (ie CTRL+SHIFT+F)
 
 ## License
 
