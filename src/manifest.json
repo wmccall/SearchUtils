@@ -56,7 +56,7 @@
         "chromeos": "Ctrl+Shift+S",
         "linux": "Ctrl+Shift+S"
       },
-      "description": "Search google for text"
+      "description": "Search web for text"
     }
   },
   "options_page": "options.html"

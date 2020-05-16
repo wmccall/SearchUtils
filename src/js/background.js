@@ -1,8 +1,9 @@
 var alteration = { "&": "%26", "?": "%3F", "%": "%25", "=": "%3D", " ": "+" };
+const DEFAULT_SEARCH_ENGINE = "google";
 
 var searches = {
   google: "https://www.google.com/search?q=",
-  duck: "https://duckduckgo.com/?q=",
+  duckduckgo: "https://duckduckgo.com/?q=",
   bing: "https://www.bing.com/search?q=",
 };
 
@@ -23,9 +24,13 @@ function openInNewTab(url) {
 }
 
 function doSearch(text) {
-  setTimeout(() => {
-    openInNewTab(searches["google"] + text);
-  }, 50);
+  chrome.storage.local.get({ searchEngine: DEFAULT_SEARCH_ENGINE }, function (
+    result
+  ) {
+    setTimeout(() => {
+      openInNewTab(searches[result.searchEngine] + text);
+    }, 50);
+  });
 }
 
 /* Received returnSearchInfo message, set badge text with number of results */

@@ -2,18 +2,12 @@
 
 <img src="https://raw.githubusercontent.com/wmccall/chrome-regex-search/master/src/icons/SU_128.png" align="right" style="padding-left: 10px;" />
 
-An extension for Regex Search in lieu of Chrome's CTRL+F.
+An extension enabling extra search features.
 
 <img src="https://raw.githubusercontent.com/wmccall/chrome-regex-search/master/google-webstore/popup.png" />
 <br />
 Instead of writing a program to download a web page to find regex matches, use 
 this simple extension to highlight regex matches on the web page dynamically as you type.
-
-Offers customizable highlighting, case-insensitive and instantaneous search in the extension options.
-
-Also, offers a search history that can be configured to the max number of records.
-
-Note that textarea and input elements will not be highlighted as they cannot be styled by CSS3 natively.
 
 ## Installation
 
@@ -22,8 +16,12 @@ Click 'Add to Chrome'
 
 ## Screenshots
 
-<img src="https://raw.githubusercontent.com/wmccall/chrome-regex-search/master/google-webstore/googlenews.png" />
-Four letter words
+<img src="https://raw.githubusercontent.com/wmccall/chrome-regex-search/master/google-webstore/regex.png" />
+Searching with regex
+
+<img src="https://raw.githubusercontent.com/wmccall/chrome-regex-search/master/google-webstore/noregex.png" />
+Searching without regex
+
 <img src="https://raw.githubusercontent.com/wmccall/chrome-regex-search/master/google-webstore/settings.png" />
 Customizable settings
 

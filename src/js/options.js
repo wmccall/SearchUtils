@@ -8,6 +8,7 @@ var WHITE_COLOR = "#ffffff";
 var ERROR_COLOR = "#ff8989";
 var GOOD_COLOR = "#89ff89";
 var DEFAULT_INSTANT_RESULTS = true;
+const DEFAULT_SEARCH_ENGINE = "google";
 /*** CONSTANTS ***/
 
 /*** FUNCTIONS ***/
@@ -63,6 +64,7 @@ function saveOptions() {
       maxResults: maxResults,
       instantResults: document.getElementById("instantResults").checked,
       maxHistoryLength: document.getElementById("maxHistoryLength").value,
+      searchEngine: document.getElementById("searchEngine").value,
     };
 
     chrome.storage.local.set(options, function () {
@@ -81,6 +83,7 @@ function loadOptions() {
       maxResults: DEFAULT_MAX_RESULTS,
       instantResults: DEFAULT_INSTANT_RESULTS,
       maxHistoryLength: DEFAULT_MAX_HISTORY_LENGTH,
+      searchEngine: DEFAULT_SEARCH_ENGINE,
     },
     function (result) {
       document.getElementById("highlightColor").value = result.highlightColor;
@@ -97,6 +100,13 @@ function loadOptions() {
       document.getElementById("instantResults").checked = result.instantResults;
       document.getElementById("maxHistoryLength").value =
         result.maxHistoryLength;
+      var searchEngineDropDown = document.getElementById("searchEngine");
+      for (var i = 0; i < searchEngineDropDown.options.length; i++) {
+        if (searchEngineDropDown.options[i].value == searchEngine) {
+          searchEngineDropDown.options[i].selected = true;
+          break;
+        }
+      }
     }
   );
 }
@@ -154,6 +164,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
   document
     .getElementById("maxHistoryLength")
+    .addEventListener("change", function () {
+      saveOptions();
+    });
+
+  document
+    .getElementById("searchEngine")
     .addEventListener("change", function () {
       saveOptions();
     });

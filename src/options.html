@@ -54,7 +54,7 @@
       <div class="panel-heading"><h3 class="panel-title">Search Utils Settings</h3></div>
       <div class="panel-body">
         <div class="panel panel-default">
-          <div class="panel-heading">What colors should be used to highlight regex matches on the web page?</div>
+          <div class="panel-heading">Colors preferences</div>
           <div class="panel-body">
             <p><input id="highlightColor" type="color" /> <label for="highlightColor">Highlight color</label></p>
             <p><input id="selectedColor" type="color" /> <label for="selectedColor">Selected color</label></p>
@@ -64,7 +64,7 @@
           </div>
         </div>
         <div class="panel panel-default">
-          <div class="panel-heading">Should results be highlighted instantaneously as you type (like Google Instant)?</div>
+          <div class="panel-heading">Highlight searches instantaneously as you type (like Google Instant)</div>
           <div class="panel-body">
             <input id="instantResults" type="checkbox" /> <label for="instantResults">Instant highlighting</label>
             <br />
@@ -72,21 +72,34 @@
           </div>
         </div>
         <div class="panel panel-default">
-          <div class="panel-heading">What's the maximum number of regex matches that should be highlighted on the web page?</div>
+          <div class="panel-heading">Maximum number of matches to be highlighted</div>
           <div class="panel-body">
-            <label for="maxResults">Max results</label> <input id="maxResults" type="text" name="maxResults" ></input>
+            <label for="maxResults">Max matches</label> <input id="maxResults" type="text" name="maxResults" ></input>
             <br />
-            <small>The smaller this number is, the better your performance (especially for complex pages).</small>
+            <small>The smaller this number the better your performance (especially for complex pages).</small>
           </div>
         </div>
         <div class="panel panel-default">
-          <div class="panel-heading">What's the maximum number of search history records that should be stored??</div>
+          <div class="panel-heading">Maximum number of searches to be stored</div>
           <div class="panel-body">
-            <label for="maxHistoryLength">Max records</label> <input id="maxHistoryLength" type="text" name="maxHistoryLength" ></input>
+            <label for="maxHistoryLength">Max searches</label> <input id="maxHistoryLength" type="text" name="maxHistoryLength" ></input>
             <br />
-            <small>The default number of records is 5.</small>
+            <small>The default number of searches is 5.</small>
           </div>
         </div>
+        <div class="panel panel-default">
+          <div class="panel-heading">Web search preferences</div>
+          <div class="panel-body">
+            <label for="searchEngine">Preferred search engine</label>
+            <select id="searchEngine">
+              <option value="google">Google</option>
+              <option value="duckduckgo">DuckDuckGo</option>
+              <option value="bing">Bing</option>
+            </select>
+            <br />
+            <small>The default search engine is Google</small>
+          </div>
+        </div>  
         <button id="buttonSave" type="save">Save Settings</button>
         <button id="buttonReset" type="reset">Reset to Defaults</button>
         <p id="status" class="status-chrome-regex"></p>
