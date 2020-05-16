@@ -67,6 +67,9 @@
         margin: 4px 2px;
         display: none;
       }
+      .errorBox{
+        margin: 4px 2px;
+      }
       .historyEntry{
         padding: 3px 0;
       }
@@ -118,7 +121,7 @@
         cursor: pointer;
         background-color: #3A3D43;
       }
-      .error-chrome-regex {
+      .error-search-utils {
         color: #FF0000;
       }
     </style>
@@ -133,9 +136,8 @@
       <button  class="optionButton" id="copy-to-clipboard" type="button" title="Copy matches to clipboard"><i class="fa fa-copy"></i></button >
       <button  class="optionButton"  id="show-history" type="button" title="History"><i class="fa fa-history"></i></button >
     </div>
-    <div id="history">
-    </div>
-    <span id="error" class="error-chrome-regex"></span>
+    <div id="history"></div>
+    <div class="errorBox"><span id="error" class="error-search-utils"></span></div>
   </body>
   <script type="text/javascript" src="js/popup.js"></script>
 </html>
