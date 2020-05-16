@@ -1,10 +1,10 @@
 # Search Utils
 
-<img src="https://raw.githubusercontent.com/rogershen/chrome-regex-search/master/src/icons/SU_128.png" align="right" style="padding-left: 10px;" />
+<img src="https://raw.githubusercontent.com/wmccall/chrome-regex-search/master/src/icons/SU_128.png" align="right" style="padding-left: 10px;" />
 
 An extension for Regex Search in lieu of Chrome's CTRL+F.
 
-<img src="https://raw.githubusercontent.com/rogershen/chrome-regex-search/master/google-webstore/popup.png" />
+<img src="https://raw.githubusercontent.com/wmccall/chrome-regex-search/master/google-webstore/popup.png" />
 <br />
 Instead of writing a program to download a web page to find regex matches, use 
 this simple extension to highlight regex matches on the web page dynamically as you type.
@@ -22,9 +22,9 @@ Click 'Add to Chrome'
 
 ## Screenshots
 
-<img src="https://raw.githubusercontent.com/rogershen/chrome-regex-search/master/google-webstore/googlenews.png" />
+<img src="https://raw.githubusercontent.com/wmccall/chrome-regex-search/master/google-webstore/googlenews.png" />
 Four letter words
-<img src="https://raw.githubusercontent.com/rogershen/chrome-regex-search/master/google-webstore/settings.png" />
+<img src="https://raw.githubusercontent.com/wmccall/chrome-regex-search/master/google-webstore/settings.png" />
 Customizable settings
 
 ## Keyboard Shortcuts
@@ -47,4 +47,4 @@ Now whenever, you want to open the popup simply enter your custom command.
 
 ## License
 
-Search Util is under the MIT license. See the <a href="https://raw.githubusercontent.com/rogershen/chrome-regex-search/master/LICENSE">LICENSE</a> file for details.
+Search Util is under the MIT license. See the <a href="https://raw.githubusercontent.com/wmccall/chrome-regex-search/master/LICENSE">LICENSE</a> file for details.
