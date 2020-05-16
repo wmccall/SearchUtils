@@ -2,7 +2,7 @@
   "manifest_version": 2,
 
   "name": "Search Utils",
-  "description": "An extension for Regex Search in lieu of Chrome's CTRL+F",
+  "description": "Enhanced web searching and page finding",
   "version": "2.0.0",
   "icons": {
     "16": "icons/SU_16.png",
