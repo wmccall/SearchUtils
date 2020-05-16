@@ -1,6 +1,6 @@
 # Search Utils
 
-<img src="https://raw.githubusercontent.com/rogershen/chrome-regex-search/master/src/icons/icons_128.png" align="right" style="padding-left: 10px;" />
+<img src="https://raw.githubusercontent.com/rogershen/chrome-regex-search/master/src/icons/SU_128.png" align="right" style="padding-left: 10px;" />
 
 An extension for Regex Search in lieu of Chrome's CTRL+F.
 

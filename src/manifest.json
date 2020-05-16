@@ -5,27 +5,27 @@
   "description": "An extension for Regex Search in lieu of Chrome's CTRL+F",
   "version": "2.0.0",
   "icons": {
-    "16": "icons/icons_16.png",
-    "24": "icons/icons_24.png",
-    "32": "icons/icons_32.png",
-    "48": "icons/icons_48.png",
-    "64": "icons/icons_64.png",
-    "72": "icons/icons_72.png",
-    "96": "icons/icons_96.png",
-    "128": "icons/icons_128.png",
-    "256": "icons/icons_256.png"
+    "16": "icons/SU_16.png",
+    "24": "icons/SU_24.png",
+    "32": "icons/SU_32.png",
+    "48": "icons/SU_48.png",
+    "64": "icons/SU_64.png",
+    "72": "icons/SU_72.png",
+    "96": "icons/SU_96.png",
+    "128": "icons/SU_128.png",
+    "256": "icons/SU_256.png"
   },
   "browser_action": {
     "default_icon": {
-      "16": "icons/icons_16.png",
-      "24": "icons/icons_24.png",
-      "32": "icons/icons_32.png",
-      "48": "icons/icons_48.png",
-      "64": "icons/icons_64.png",
-      "72": "icons/icons_72.png",
-      "96": "icons/icons_96.png",
-      "128": "icons/icons_128.png",
-      "256": "icons/icons_256.png"
+      "16": "icons/SU_16.png",
+      "24": "icons/SU_24.png",
+      "32": "icons/SU_32.png",
+      "48": "icons/SU_48.png",
+      "64": "icons/SU_64.png",
+      "72": "icons/SU_72.png",
+      "96": "icons/SU_96.png",
+      "128": "icons/SU_128.png",
+      "256": "icons/SU_256.png"
     },
     "default_popup": "popup.html"
   },
