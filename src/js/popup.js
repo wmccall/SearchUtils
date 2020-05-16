@@ -75,26 +75,32 @@ function passInputToContentScript() {
 }
 
 function passInputToContentScript(configurationChanged) {
-  if (!processingKey) {
-    var regexString = document.getElementById("inputRegex").value;
-    if (!isValidRegex(regexString)) {
-      document.getElementById("inputRegex").style.backgroundColor = ERROR_COLOR;
-    } else {
-      document.getElementById("inputRegex").style.backgroundColor = GOOD_COLOR;
-    }
-    chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
-      if ("undefined" != typeof tabs[0].id && tabs[0].id) {
-        processingKey = true;
-        chrome.tabs.sendMessage(tabs[0].id, {
-          message: "search",
-          regexString: regexString,
-          configurationChanged: configurationChanged,
-          getNext: true,
-        });
-        sentInput = true;
+  chrome.storage.local.get({ useRegex: DEFAULT_USE_REGEX }, function (result) {
+    if (!processingKey) {
+      var regexString = document.getElementById("inputRegex").value;
+      if (!isValidRegex(regexString) && result.useRegex) {
+        document.getElementById(
+          "inputRegex"
+        ).style.backgroundColor = ERROR_COLOR;
+      } else {
+        document.getElementById(
+          "inputRegex"
+        ).style.backgroundColor = GOOD_COLOR;
       }
-    });
-  }
+      chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+        if ("undefined" != typeof tabs[0].id && tabs[0].id) {
+          processingKey = true;
+          chrome.tabs.sendMessage(tabs[0].id, {
+            message: "search",
+            regexString: regexString,
+            configurationChanged: configurationChanged,
+            getNext: true,
+          });
+          sentInput = true;
+        }
+      });
+    }
+  });
 }
 
 function createHistoryLineElement(text) {

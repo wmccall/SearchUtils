@@ -32,7 +32,7 @@ function doSearch(text) {
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
   if ("returnSearchInfo" == request.message) {
     chrome.browserAction.setBadgeText({
-      text: String(request.numResults),
+      text: request.numResults > 0 ? String(request.numResults) : "",
       tabId: sender.tab.id,
     });
   }

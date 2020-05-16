@@ -11,6 +11,7 @@ var DEFAULT_SELECTED_COLOR = "#ff9900";
 var DEFAULT_TEXT_COLOR = "#000000";
 var DEFAULT_CASE_SENSITIVE = false;
 var DEFAULT_USE_REGEX = false;
+const LETTERS = "abcdefghijklmnopqrstuvwxyz";
 /*** CONSTANTS ***/
 
 /*** VARIABLES ***/
@@ -214,60 +215,84 @@ function validateRegex(pattern) {
 
 /* Find and highlight regex matches in web page from a given regex string or pattern */
 function search(regexString, configurationChanged) {
-  var regex = validateRegex(regexString);
-  if (
-    regex &&
-    regexString != "" &&
-    (configurationChanged || regexString !== searchInfo.regexString)
-  ) {
-    // new valid regex string
-    removeHighlight();
-    chrome.storage.local.get(
-      {
-        highlightColor: DEFAULT_HIGHLIGHT_COLOR,
-        selectedColor: DEFAULT_SELECTED_COLOR,
-        textColor: DEFAULT_TEXT_COLOR,
-        maxResults: DEFAULT_MAX_RESULTS,
-        caseSensitive: DEFAULT_CASE_SENSITIVE,
-        useRegex: DEFAULT_USE_REGEX,
-      },
-      function (result) {
-        initSearchInfo(regexString);
-        if (!result.caseSensitive) {
-          regex = new RegExp(regexString, "i");
-        }
-        highlight(
-          regex,
-          result.highlightColor,
-          result.selectedColor,
-          result.textColor,
-          result.maxResults
+  chrome.storage.local.get(
+    {
+      useRegex: DEFAULT_USE_REGEX,
+    },
+    function (result) {
+      const useRegex = result.useRegex;
+      var regex = "";
+      if (useRegex) {
+        regex = validateRegex(regexString);
+      } else {
+        regex = regexString.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+      }
+      if (
+        regex &&
+        regexString != "" &&
+        (configurationChanged || regexString !== searchInfo.regexString)
+      ) {
+        // new valid regex string
+        removeHighlight();
+        chrome.storage.local.get(
+          {
+            highlightColor: DEFAULT_HIGHLIGHT_COLOR,
+            selectedColor: DEFAULT_SELECTED_COLOR,
+            textColor: DEFAULT_TEXT_COLOR,
+            maxResults: DEFAULT_MAX_RESULTS,
+            caseSensitive: DEFAULT_CASE_SENSITIVE,
+          },
+          function (result) {
+            initSearchInfo(regexString);
+            if (!result.caseSensitive) {
+              if (useRegex) {
+                regex = new RegExp(regexString, "i");
+              } else {
+                regex = Array.from(regex.toLowerCase())
+                  .map((char) => {
+                    const isLetter = LETTERS.indexOf(char) !== -1;
+                    if (isLetter) {
+                      return `[${char}${char.toUpperCase()}]`;
+                    }
+                    return char;
+                  })
+                  .join("");
+              }
+            }
+            highlight(
+              regex,
+              result.highlightColor,
+              result.selectedColor,
+              result.textColor,
+              result.maxResults
+            );
+            selectFirstNode(result.selectedColor);
+            returnSearchInfo("search");
+          }
         );
-        selectFirstNode(result.selectedColor);
+      } else if (
+        regex &&
+        regexString != "" &&
+        regexString === searchInfo.regexString
+      ) {
+        // elements are already highlighted
+        chrome.storage.local.get(
+          {
+            highlightColor: DEFAULT_HIGHLIGHT_COLOR,
+            selectedColor: DEFAULT_SELECTED_COLOR,
+          },
+          function (result) {
+            selectNextNode(result.highlightColor, result.selectedColor);
+          }
+        );
+      } else {
+        // blank string or invalid regex
+        removeHighlight();
+        initSearchInfo(regexString);
         returnSearchInfo("search");
       }
-    );
-  } else if (
-    regex &&
-    regexString != "" &&
-    regexString === searchInfo.regexString
-  ) {
-    // elements are already highlighted
-    chrome.storage.local.get(
-      {
-        highlightColor: DEFAULT_HIGHLIGHT_COLOR,
-        selectedColor: DEFAULT_SELECTED_COLOR,
-      },
-      function (result) {
-        selectNextNode(result.highlightColor, result.selectedColor);
-      }
-    );
-  } else {
-    // blank string or invalid regex
-    removeHighlight();
-    initSearchInfo(regexString);
-    returnSearchInfo("search");
-  }
+    }
+  );
 }
 /*** FUNCTIONS ***/
 
