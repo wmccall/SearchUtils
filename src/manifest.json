@@ -29,7 +29,7 @@
     },
     "default_popup": "popup.html"
   },
-  "permissions": ["activeTab", "declarativeContent", "storage"],
+  "permissions": ["activeTab", "storage"],
   "background": {
     "scripts": ["js/background.js"],
     "persistent": true

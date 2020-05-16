@@ -44,7 +44,6 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
 });
 
 chrome.runtime.onInstalled.addListener(function () {
-  new chrome.declarativeContent.ShowPageAction();
   chrome.commands.onCommand.addListener(function (command) {
     chrome.tabs.executeScript(
       {
