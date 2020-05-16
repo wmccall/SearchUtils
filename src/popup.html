@@ -30,9 +30,6 @@
       #sensitive {
         -webkit-text-stroke: 0px rgba(0,0,0,1);
       }
-      #clear {
-        -webkit-text-stroke: 0px rgba(0,0,0,1);
-      }
       #show-history {
         -webkit-text-stroke: 0px;
       }
@@ -110,6 +107,10 @@
         border: 0;
       }
 
+      #regex{
+        font-size: 20px;
+      }
+
       body {
         background-color: #21252B;
       }
@@ -127,9 +128,9 @@
       <input id="inputRegex" type="text" name="inputRegex"></input><span id="numResults"></span>
       <button  class="optionButton" id="prev" type="button" title="Previous Match"><i class="fa fa-angle-up"></i></button >
       <button  class="optionButton" id="next" type="button" title="Next Match"><i class="fa fa-angle-down"></i></button >
-      <button  class="optionButton" id="sensitive" type="button" title="Case Sensitive">Aa</i></button >
+      <button  class="optionButton" id="regex" type="button" title="Regex">.*</button >
+      <button  class="optionButton" id="sensitive" type="button" title="Case Sensitive">Aa</button >
       <button  class="optionButton" id="copy-to-clipboard" type="button" title="Copy matches to clipboard"><i class="fa fa-copy"></i></button >
-      <button  class="optionButton" id="clear" type="button" title="Clear"><i class="fa fa-trash-o"></i></button >
       <button  class="optionButton"  id="show-history" type="button" title="History"><i class="fa fa-history"></i></button >
     </div>
     <div id="history">

@@ -10,6 +10,7 @@ var DEFAULT_HIGHLIGHT_COLOR = "#ffff00";
 var DEFAULT_SELECTED_COLOR = "#ff9900";
 var DEFAULT_TEXT_COLOR = "#000000";
 var DEFAULT_CASE_SENSITIVE = false;
+var DEFAULT_USE_REGEX = false;
 /*** CONSTANTS ***/
 
 /*** VARIABLES ***/
@@ -228,6 +229,7 @@ function search(regexString, configurationChanged) {
         textColor: DEFAULT_TEXT_COLOR,
         maxResults: DEFAULT_MAX_RESULTS,
         caseSensitive: DEFAULT_CASE_SENSITIVE,
+        useRegex: DEFAULT_USE_REGEX,
       },
       function (result) {
         initSearchInfo(regexString);

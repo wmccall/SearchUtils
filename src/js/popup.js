@@ -8,9 +8,12 @@ var SHOW_HISTORY_TITLE = "Show search history";
 var HIDE_HISTORY_TITLE = "Hide search history";
 var ENABLE_CASE_SENSITIVE_TITLE = "Enable case sensitive search";
 var DISABLE_CASE_SENSITIVE_TITLE = "Disable case sensitive search";
+var ENABLE_USE_REGEX_TITLE = "Enable regex search";
+var DISABLE_USE_REGEX_TITLE = "Disable regex search";
 var HISTORY_IS_EMPTY_TEXT = "Search history is empty.";
 var CLEAR_ALL_HISTORY_TEXT = "Clear History";
 var DEFAULT_CASE_SENSITIVE = false;
+var DEFAULT_USE_REGEX = false;
 var MAX_HISTORY_LENGTH = 5;
 /*** CONSTANTS ***/
 
@@ -227,6 +230,37 @@ function toggleCaseSensitive() {
   passInputToContentScript(true);
 }
 
+function setUserRegexElement() {
+  var useRegex = chrome.storage.local.get(
+    { useRegex: DEFAULT_USE_REGEX },
+    function (result) {
+      document.getElementById("regex").title = result.useRegex
+        ? DISABLE_USE_REGEX_TITLE
+        : ENABLE_USE_REGEX_TITLE;
+      if (result.useRegex) {
+        document.getElementById("regex").className = "optionButton selected";
+      } else {
+        document.getElementById("regex").className = "optionButton";
+      }
+    }
+  );
+}
+function toggleUseRegex() {
+  var useRegex =
+    document.getElementById("regex").className == "optionButton selected";
+  document.getElementById("regex").title = useRegex
+    ? ENABLE_USE_REGEX_TITLE
+    : DISABLE_USE_REGEX_TITLE;
+  if (useRegex) {
+    document.getElementById("regex").className = "optionButton";
+  } else {
+    document.getElementById("regex").className = "optionButton selected";
+  }
+  sentInput = false;
+  chrome.storage.local.set({ useRegex: !useRegex });
+  passInputToContentScript(true);
+}
+
 function clearSearchHistory() {
   searchHistory = [];
   chrome.storage.local.set({ searchHistory: searchHistory });
@@ -242,13 +276,6 @@ document.getElementById("prev").addEventListener("click", function () {
   selectPrev();
 });
 
-document.getElementById("clear").addEventListener("click", function () {
-  sentInput = false;
-  document.getElementById("inputRegex").value = "";
-  passInputToContentScript();
-  document.getElementById("inputRegex").focus();
-});
-
 document.getElementById("show-history").addEventListener("click", function () {
   var makeVisible = document.getElementById("history").style.display == "none";
   setHistoryVisibility(makeVisible);
@@ -257,6 +284,9 @@ document.getElementById("show-history").addEventListener("click", function () {
 
 document.getElementById("sensitive").addEventListener("click", function () {
   toggleCaseSensitive();
+});
+document.getElementById("regex").addEventListener("click", function () {
+  toggleUseRegex();
 });
 
 document
@@ -414,4 +444,5 @@ setHistoryVisibility(makeVisible);
 chrome.storage.local.set({ isSearchHistoryVisible: makeVisible });
 
 setCaseSensitiveElement();
+setUserRegexElement();
 /*** INIT ***/
