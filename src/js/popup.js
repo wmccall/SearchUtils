@@ -2,8 +2,7 @@
 var DEFAULT_INSTANT_RESULTS = true;
 var ERROR_COLOR = "#ff8989";
 var WHITE_COLOR = "#ffffff";
-var ERROR_TEXT =
-  "Content script was not loaded. Are you currently in the Chrome Web Store or in a chrome:// page? If you are, content scripts won't work here. If not, please wait for the page to finish loading or refresh the page.";
+var ERROR_TEXT = "Reload";
 var SHOW_HISTORY_TITLE = "Show search history";
 var HIDE_HISTORY_TITLE = "Hide search history";
 var ENABLE_CASE_INSENSITIVE_TITLE = "Enable case insensitive search";
@@ -120,6 +119,7 @@ function createHistoryLineElement(text) {
   var lineDiv = document.createElement("div");
   lineDiv.appendChild(deleteEntrySpan);
   lineDiv.appendChild(linkSpan);
+  lineDiv.className = "historyEntry";
   return lineDiv;
 }
 
@@ -136,8 +136,7 @@ function updateHistoryDiv() {
       for (var i = searchHistory.length - 1; i >= 0; i--) {
         historyDiv.appendChild(createHistoryLineElement(searchHistory[i]));
       }
-      var clearButton = document.createElement("a");
-      clearButton.href = "#";
+      var clearButton = document.createElement("button");
       clearButton.type = "button";
       clearButton.textContent = CLEAR_ALL_HISTORY_TEXT;
       clearButton.className = "clearHistoryButton";
@@ -189,9 +188,9 @@ function setHistoryVisibility(makeVisible) {
     ? HIDE_HISTORY_TITLE
     : SHOW_HISTORY_TITLE;
   if (makeVisible) {
-    document.getElementById("show-history").className = "selected";
+    document.getElementById("show-history").className = "optionButton selected";
   } else {
-    document.getElementById("show-history").className = "";
+    document.getElementById("show-history").className = "optionButton";
   }
 }
 
@@ -203,23 +202,24 @@ function setCaseInsensitiveElement() {
         ? DISABLE_CASE_INSENSITIVE_TITLE
         : ENABLE_CASE_INSENSITIVE_TITLE;
       if (result.caseInsensitive) {
-        document.getElementById("insensitive").className = "selected";
+        document.getElementById("insensitive").className =
+          "optionButton selected";
       } else {
-        document.getElementById("insensitive").className = "";
+        document.getElementById("insensitive").className = "optionButton";
       }
     }
   );
 }
 function toggleCaseInsensitive() {
   var caseInsensitive =
-    document.getElementById("insensitive").className == "selected";
+    document.getElementById("insensitive").className == "optionButton selected";
   document.getElementById("insensitive").title = caseInsensitive
     ? ENABLE_CASE_INSENSITIVE_TITLE
     : DISABLE_CASE_INSENSITIVE_TITLE;
   if (caseInsensitive) {
-    document.getElementById("insensitive").className = "";
+    document.getElementById("insensitive").className = "optionButton";
   } else {
-    document.getElementById("insensitive").className = "selected";
+    document.getElementById("insensitive").className = "optionButton selected";
   }
   sentInput = false;
   chrome.storage.local.set({ caseInsensitive: !caseInsensitive });

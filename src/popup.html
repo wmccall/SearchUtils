@@ -19,25 +19,19 @@
         -webkit-box-shadow: inset 0 0 30px #fff;
         box-shadow: inset 0 0 30px #fff;
         border-radius: 2px;
-        -webkit-text-stroke: 2px rgba(0,0,0,1);
+        -webkit-text-stroke: 0px rgba(0,0,0,1);
       }
-      a.selected {
-        background-color: #eaeaea;
+      button.selected {
+        background-color: #f2f2f2;
         color: #000;
         -webkit-box-shadow: inset 0 3px 3px rgba(0, 0, 0, .125);
                box-shadow: inset 0 3px 3px rgba(0, 0, 0, .125);
       }
-      a:hover {
-        background-color: #dadada;
-        color: #000;
-       -webkit-box-shadow: inset 0 3px 3px rgba(0, 0, 0, .125);
-               box-shadow: inset 0 3px 3px rgba(0, 0, 0, .125);
-      }
       #insensitive {
-        -webkit-text-stroke: 1px rgba(0,0,0,1);
+        -webkit-text-stroke: 0px rgba(0,0,0,1);
       }
       #clear {
-        -webkit-text-stroke: 1px rgba(0,0,0,1);
+        -webkit-text-stroke: 0px rgba(0,0,0,1);
       }
       #show-history {
         -webkit-text-stroke: 0px;
@@ -51,13 +45,15 @@
         width: 22em;
         border-radius: 2px;
         padding-right: 5em;
+        outline: none;
+        border: none;
        -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .125);
                box-shadow: 0 1px 1px rgba(0, 0, 0, .125);
       }
       #numResults {
         position: absolute;
         top: 0.25em;
-        right: 14.5em;
+        left: 22em;
         min-width: 4em;
         max-width: 5em;
         overflow:auto;
@@ -68,6 +64,9 @@
       #history {
         margin: 4px 2px;
         display: none;
+      }
+      .historyEntry{
+        padding: 3px 0;
       }
       .historyDeleteEntry {
         color: #c00;
@@ -85,16 +84,30 @@
       }
       
       .clearHistoryButton {
-        color: #000; 
-        text-decoration: none;
-        float: left !important;
+        margin-top: 3px;
+        color: #000;
+        background-color: #ffffff;
+        outline: none;
+        border: 0;
+        padding: 2px 5px;
+        border-radius: 10px;
         width: 7em !important;
-        -webkit-text-stroke: 0.5px rgba(0,0,0,1) !important;
+        -webkit-text-stroke: 0.0px rgba(0,0,0,1) !important;
         margin-bottom: 0.2em;
+      }
+
+      .optionButton{
+        background-color: #ffffff;
+        outline: none;
+        border: 0;
       }
 
       body {
         background-color: #dddddd;
+      }
+      button:hover{
+        cursor: pointer;
+        background-color: #f2f2f2;
       }
       .error-chrome-regex {
         color: #FF0000;
@@ -104,12 +117,12 @@
   <body>
     <div class="flexContainer">
       <input id="inputRegex" type="text" name="inputRegex"></input><span id="numResults"></span>
-      <a href="#" id="prev" type="button" title="Previous Match"><i class="fa fa-angle-up"></i></a>
-      <a href="#" id="next" type="button" title="Next Match"><i class="fa fa-angle-down"></i></a>
-      <a href="#" id="insensitive" type="button" title="Case Insensitive"><i class="fa fa-info"></i></a>
-      <a href="#" id="copy-to-clipboard" type="button" title="Copy matches to clipboard"><i class="fa fa-copy"></i></a>
-      <a href="#" id="clear" type="button" title="Clear"><i class="fa fa-trash-o"></i></a>
-      <a href="#" class="selected" id="show-history" type="button" title="History"><i class="fa fa-history"></i></a>
+      <button  class="optionButton" id="prev" type="button" title="Previous Match"><i class="fa fa-angle-up"></i></button >
+      <button  class="optionButton" id="next" type="button" title="Next Match"><i class="fa fa-angle-down"></i></button >
+      <button  class="optionButton" id="insensitive" type="button" title="Case Insensitive"><i class="fa fa-info"></i></button >
+      <button  class="optionButton" id="copy-to-clipboard" type="button" title="Copy matches to clipboard"><i class="fa fa-copy"></i></button >
+      <button  class="optionButton" id="clear" type="button" title="Clear"><i class="fa fa-trash-o"></i></button >
+      <button  class="optionButton"  id="show-history" type="button" title="History"><i class="fa fa-history"></i></button >
     </div>
     <div id="history">
     </div>
