@@ -2,15 +2,16 @@
 var DEFAULT_INSTANT_RESULTS = true;
 var ERROR_COLOR = "#ff8989";
 var WHITE_COLOR = "#ffffff";
-var ERROR_TEXT = "Reload";
+var GOOD_COLOR = "#1D1F23";
+var ERROR_TEXT = "Reload window to search";
 var SHOW_HISTORY_TITLE = "Show search history";
 var HIDE_HISTORY_TITLE = "Hide search history";
-var ENABLE_CASE_INSENSITIVE_TITLE = "Enable case insensitive search";
-var DISABLE_CASE_INSENSITIVE_TITLE = "Disable case insensitive search";
+var ENABLE_CASE_SENSITIVE_TITLE = "Enable case sensitive search";
+var DISABLE_CASE_SENSITIVE_TITLE = "Disable case sensitive search";
 var HISTORY_IS_EMPTY_TEXT = "Search history is empty.";
 var CLEAR_ALL_HISTORY_TEXT = "Clear History";
-var DEFAULT_CASE_INSENSITIVE = true;
-var MAX_HISTORY_LENGTH = 30;
+var DEFAULT_CASE_SENSITIVE = false;
+var MAX_HISTORY_LENGTH = 5;
 /*** CONSTANTS ***/
 
 /*** VARIABLES ***/
@@ -76,7 +77,7 @@ function passInputToContentScript(configurationChanged) {
     if (!isValidRegex(regexString)) {
       document.getElementById("inputRegex").style.backgroundColor = ERROR_COLOR;
     } else {
-      document.getElementById("inputRegex").style.backgroundColor = WHITE_COLOR;
+      document.getElementById("inputRegex").style.backgroundColor = GOOD_COLOR;
     }
     chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
       if ("undefined" != typeof tabs[0].id && tabs[0].id) {
@@ -194,35 +195,35 @@ function setHistoryVisibility(makeVisible) {
   }
 }
 
-function setCaseInsensitiveElement() {
-  var caseInsensitive = chrome.storage.local.get(
-    { caseInsensitive: DEFAULT_CASE_INSENSITIVE },
+function setCaseSensitiveElement() {
+  var caseSensitive = chrome.storage.local.get(
+    { caseSensitive: DEFAULT_CASE_SENSITIVE },
     function (result) {
-      document.getElementById("insensitive").title = result.caseInsensitive
-        ? DISABLE_CASE_INSENSITIVE_TITLE
-        : ENABLE_CASE_INSENSITIVE_TITLE;
-      if (result.caseInsensitive) {
-        document.getElementById("insensitive").className =
+      document.getElementById("sensitive").title = result.caseSensitive
+        ? DISABLE_CASE_SENSITIVE_TITLE
+        : ENABLE_CASE_SENSITIVE_TITLE;
+      if (result.caseSensitive) {
+        document.getElementById("sensitive").className =
           "optionButton selected";
       } else {
-        document.getElementById("insensitive").className = "optionButton";
+        document.getElementById("sensitive").className = "optionButton";
       }
     }
   );
 }
-function toggleCaseInsensitive() {
-  var caseInsensitive =
-    document.getElementById("insensitive").className == "optionButton selected";
-  document.getElementById("insensitive").title = caseInsensitive
-    ? ENABLE_CASE_INSENSITIVE_TITLE
-    : DISABLE_CASE_INSENSITIVE_TITLE;
-  if (caseInsensitive) {
-    document.getElementById("insensitive").className = "optionButton";
+function toggleCaseSensitive() {
+  var caseSensitive =
+    document.getElementById("sensitive").className == "optionButton selected";
+  document.getElementById("sensitive").title = caseSensitive
+    ? ENABLE_CASE_SENSITIVE_TITLE
+    : DISABLE_CASE_SENSITIVE_TITLE;
+  if (caseSensitive) {
+    document.getElementById("sensitive").className = "optionButton";
   } else {
-    document.getElementById("insensitive").className = "optionButton selected";
+    document.getElementById("sensitive").className = "optionButton selected";
   }
   sentInput = false;
-  chrome.storage.local.set({ caseInsensitive: !caseInsensitive });
+  chrome.storage.local.set({ caseSensitive: !caseSensitive });
   passInputToContentScript(true);
 }
 
@@ -254,8 +255,8 @@ document.getElementById("show-history").addEventListener("click", function () {
   chrome.storage.local.set({ isSearchHistoryVisible: makeVisible });
 });
 
-document.getElementById("insensitive").addEventListener("click", function () {
-  toggleCaseInsensitive();
+document.getElementById("sensitive").addEventListener("click", function () {
+  toggleCaseSensitive();
 });
 
 document
@@ -412,5 +413,5 @@ var makeVisible = document.getElementById("history").style.display == "none";
 setHistoryVisibility(makeVisible);
 chrome.storage.local.set({ isSearchHistoryVisible: makeVisible });
 
-setCaseInsensitiveElement();
+setCaseSensitiveElement();
 /*** INIT ***/

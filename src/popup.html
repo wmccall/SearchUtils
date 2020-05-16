@@ -22,12 +22,12 @@
         -webkit-text-stroke: 0px rgba(0,0,0,1);
       }
       button.selected {
-        background-color: #f2f2f2;
-        color: #000;
+        background-color: #3E4147;
+        color: white;
         -webkit-box-shadow: inset 0 3px 3px rgba(0, 0, 0, .125);
                box-shadow: inset 0 3px 3px rgba(0, 0, 0, .125);
       }
-      #insensitive {
+      #sensitive {
         -webkit-text-stroke: 0px rgba(0,0,0,1);
       }
       #clear {
@@ -42,24 +42,29 @@
         display: flex;
       }
       #inputRegex {
-        width: 22em;
+        background-color: #1D1F23;
+        color: white;
+        width: 300px;
+        height: 15px;
+        font-size: 15px;
+        line-height: 15px;
         border-radius: 2px;
-        padding-right: 5em;
+        padding: 5px 70px 5px 5px;
         outline: none;
         border: none;
        -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .125);
                box-shadow: 0 1px 1px rgba(0, 0, 0, .125);
       }
       #numResults {
+        color: white;
         position: absolute;
-        top: 0.25em;
-        left: 22em;
+        left: 300px;
         min-width: 4em;
         max-width: 5em;
         overflow:auto;
         white-space: nowrap;
-        height: 1.6;
-        font-size: 10pt;
+        font-size: 15px;
+        line-height: 25px;
       }
       #history {
         margin: 4px 2px;
@@ -72,11 +77,13 @@
         color: #c00;
         cursor: pointer;
         margin-right: 4px;
-        font-size: 0.8em;
+        font-size: 15px;
       }
       .historyLink {
-        color: #09d;
+        color: rgb(33, 136, 180);
         cursor: pointer;
+        font-size: 19px;
+        padding-bottom: 2px;
       }
       .historyIsEmptyMessage {
         font-style: italic;
@@ -85,8 +92,8 @@
       
       .clearHistoryButton {
         margin-top: 3px;
-        color: #000;
-        background-color: #ffffff;
+        color: white;
+        background-color: #21252B;
         outline: none;
         border: 0;
         padding: 2px 5px;
@@ -97,17 +104,18 @@
       }
 
       .optionButton{
-        background-color: #ffffff;
+        background-color: #21252B;
+        color:white;
         outline: none;
         border: 0;
       }
 
       body {
-        background-color: #dddddd;
+        background-color: #21252B;
       }
       button:hover{
         cursor: pointer;
-        background-color: #f2f2f2;
+        background-color: #3A3D43;
       }
       .error-chrome-regex {
         color: #FF0000;
@@ -119,7 +127,7 @@
       <input id="inputRegex" type="text" name="inputRegex"></input><span id="numResults"></span>
       <button  class="optionButton" id="prev" type="button" title="Previous Match"><i class="fa fa-angle-up"></i></button >
       <button  class="optionButton" id="next" type="button" title="Next Match"><i class="fa fa-angle-down"></i></button >
-      <button  class="optionButton" id="insensitive" type="button" title="Case Insensitive"><i class="fa fa-info"></i></button >
+      <button  class="optionButton" id="sensitive" type="button" title="Case Sensitive">Aa</i></button >
       <button  class="optionButton" id="copy-to-clipboard" type="button" title="Copy matches to clipboard"><i class="fa fa-copy"></i></button >
       <button  class="optionButton" id="clear" type="button" title="Clear"><i class="fa fa-trash-o"></i></button >
       <button  class="optionButton"  id="show-history" type="button" title="History"><i class="fa fa-history"></i></button >
