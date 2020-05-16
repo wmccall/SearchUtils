@@ -11,7 +11,6 @@ var DEFAULT_SELECTED_COLOR = "#ff9900";
 var DEFAULT_TEXT_COLOR = "#000000";
 var DEFAULT_CASE_SENSITIVE = false;
 var DEFAULT_USE_REGEX = false;
-const LETTERS = "abcdefghijklmnopqrstuvwxyz";
 /*** CONSTANTS ***/
 
 /*** VARIABLES ***/
@@ -245,19 +244,7 @@ function search(regexString, configurationChanged) {
           function (result) {
             initSearchInfo(regexString);
             if (!result.caseSensitive) {
-              if (useRegex) {
-                regex = new RegExp(regexString, "i");
-              } else {
-                regex = Array.from(regex.toLowerCase())
-                  .map((char) => {
-                    const isLetter = LETTERS.indexOf(char) !== -1;
-                    if (isLetter) {
-                      return `[${char}${char.toUpperCase()}]`;
-                    }
-                    return char;
-                  })
-                  .join("");
-              }
+              regex = new RegExp(regexString, "i");
             }
             highlight(
               regex,
