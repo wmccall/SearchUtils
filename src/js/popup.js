@@ -21,6 +21,7 @@ var MAX_HISTORY_LENGTH = 5;
 var sentInput = false;
 var processingKey = false;
 var searchHistory = null;
+var lastSearch = null;
 var maxHistoryLength = MAX_HISTORY_LENGTH;
 /*** VARIABLES ***/
 
@@ -190,6 +191,10 @@ function addToHistory(regex) {
   }
 }
 
+function updateLastSearch(regex) {
+  chrome.storage.local.set({ lastSearch: regex });
+}
+
 function setHistoryVisibility(makeVisible) {
   document.getElementById("history").style.display = makeVisible
     ? "block"
@@ -333,6 +338,7 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
     if (request.regexString !== document.getElementById("inputRegex").value) {
       passInputToContentScript();
     }
+    updateLastSearch(request.regexString);
   }
 });
 
@@ -366,6 +372,7 @@ chrome.storage.local.get(
     instantResults: DEFAULT_INSTANT_RESULTS,
     maxHistoryLength: MAX_HISTORY_LENGTH,
     searchHistory: null,
+    lastSearch: null,
     isSearchHistoryVisible: false,
   },
   function (result) {
@@ -390,6 +397,11 @@ chrome.storage.local.get(
       searchHistory = result.searchHistory.slice(0);
     } else {
       searchHistory = [];
+    }
+    if (result.lastSearch) {
+      lastSearch = result.lastSearch;
+    } else {
+      lastSearch = "";
     }
     setHistoryVisibility(result.isSearchHistoryVisible);
     updateHistoryDiv();
@@ -431,10 +443,10 @@ chrome.tabs.executeScript(
   function (text) {
     if (text[0] !== "") {
       document.getElementById("inputRegex").value = text;
-      addToHistory(text);
+      addToHistory(lastSearch);
+    } else {
+      document.getElementById("inputRegex").value = lastSearch;
     }
-    console.log("here");
-    console.log(text[0]);
   }
 );
 
