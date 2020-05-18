@@ -37,9 +37,7 @@ Enhanced web searching and page finding
 ## Keyboard Shortcuts
 
 - <b>CTRL+SHIFT+S</b> : Search the web for selected text
-  - <b>On MacOS</b> : Use COMMAND instead of CTRL
 - <b>CTRL+SHIFT+F</b> : Open popup (and search selected text if any is selected)
-  - <b>On MacOS</b> : Use COMMAND instead of CTRL
 - <b>ENTER</b> : Select next search match on page
 - <b>SHIFT+ENTER</b> : Select previous search match on page
 
