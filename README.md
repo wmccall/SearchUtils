@@ -17,8 +17,7 @@ Enhanced web searching and page finding
 
 ## Installation
 
-- Go to https://chrome.google.com/webstore/detail/chrome-regex-search/bpelaihoicobbkgmhcbikncnpacdbknn?hl=en&gl=US
-- Click 'Add to Chrome'
+TBD once approved for the chrome web store
 
 ## Screenshots
 
