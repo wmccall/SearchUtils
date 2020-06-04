@@ -17,7 +17,7 @@ Enhanced web searching and page finding
 
 ## Installation
 
-TBD once approved for the chrome web store
+Download it from the [Chrome Web Store](https://chrome.google.com/webstore/detail/search-utils/chadkhhmielfefgnfmgaaehcaejhdabi).
 
 ## Screenshots
 
