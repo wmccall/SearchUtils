@@ -36,7 +36,9 @@ Download it from the [Chrome Web Store](https://chrome.google.com/webstore/detai
 ## Keyboard Shortcuts
 
 - <b>CTRL+SHIFT+S</b> : Search the web for selected text
+  - <b>CTRL+S</b> : For Mac
 - <b>CTRL+SHIFT+F</b> : Open popup (and search selected text if any is selected)
+  - <b>CTRL+F</b> : For Mac
 - <b>ENTER</b> : Select next search match on page
 - <b>SHIFT+ENTER</b> : Select previous search match on page
 
