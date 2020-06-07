@@ -241,7 +241,7 @@ function toggleCaseSensitive() {
   passInputToContentScript(true);
 }
 
-function setUserRegexElement() {
+function setUseRegexElement() {
   var useRegex = chrome.storage.local.get(
     { useRegex: DEFAULT_USE_REGEX },
     function (result) {
@@ -462,5 +462,5 @@ setHistoryVisibility(makeVisible);
 chrome.storage.local.set({ isSearchHistoryVisible: makeVisible });
 
 setCaseSensitiveElement();
-setUserRegexElement();
+setUseRegexElement();
 /*** INIT ***/

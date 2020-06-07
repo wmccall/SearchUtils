@@ -203,9 +203,14 @@ function selectPrevNode(highlightedColor, selectedColor) {
 }
 
 /* Validate that a given pattern string is a valid regex */
-function validateRegex(pattern) {
+function validateRegex(pattern, caseSensitive) {
   try {
-    var regex = new RegExp(pattern);
+    var regex = "";
+    if (caseSensitive) {
+      regex = new RegExp(pattern);
+    } else {
+      regex = new RegExp(pattern, "i");
+    }
     return regex;
   } catch (e) {
     return false;
@@ -217,14 +222,22 @@ function search(regexString, configurationChanged) {
   chrome.storage.local.get(
     {
       useRegex: DEFAULT_USE_REGEX,
+      highlightColor: DEFAULT_HIGHLIGHT_COLOR,
+      selectedColor: DEFAULT_SELECTED_COLOR,
+      textColor: DEFAULT_TEXT_COLOR,
+      maxResults: DEFAULT_MAX_RESULTS,
+      caseSensitive: DEFAULT_CASE_SENSITIVE,
     },
     function (result) {
       const useRegex = result.useRegex;
+      const useCaseSens = result.useCaseSens;
       var regex = "";
       if (useRegex) {
-        regex = validateRegex(regexString);
+        regex = validateRegex(regexString, useCaseSens);
       } else {
-        regex = regexString.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+        regex = validateRegex(
+          regexString.replace(/[.*+?^${}()|[\]\\]/g, "\\$&", useCaseSens)
+        );
       }
       if (
         regex &&
@@ -233,45 +246,23 @@ function search(regexString, configurationChanged) {
       ) {
         // new valid regex string
         removeHighlight();
-        chrome.storage.local.get(
-          {
-            highlightColor: DEFAULT_HIGHLIGHT_COLOR,
-            selectedColor: DEFAULT_SELECTED_COLOR,
-            textColor: DEFAULT_TEXT_COLOR,
-            maxResults: DEFAULT_MAX_RESULTS,
-            caseSensitive: DEFAULT_CASE_SENSITIVE,
-          },
-          function (result) {
-            initSearchInfo(regexString);
-            if (!result.caseSensitive) {
-              regex = new RegExp(regexString, "i");
-            }
-            highlight(
-              regex,
-              result.highlightColor,
-              result.selectedColor,
-              result.textColor,
-              result.maxResults
-            );
-            selectFirstNode(result.selectedColor);
-            returnSearchInfo("search");
-          }
+        initSearchInfo(regexString);
+        highlight(
+          regex,
+          result.highlightColor,
+          result.selectedColor,
+          result.textColor,
+          result.maxResults
         );
+        selectFirstNode(result.selectedColor);
+        returnSearchInfo("search");
       } else if (
         regex &&
         regexString != "" &&
         regexString === searchInfo.regexString
       ) {
         // elements are already highlighted
-        chrome.storage.local.get(
-          {
-            highlightColor: DEFAULT_HIGHLIGHT_COLOR,
-            selectedColor: DEFAULT_SELECTED_COLOR,
-          },
-          function (result) {
-            selectNextNode(result.highlightColor, result.selectedColor);
-          }
-        );
+        selectNextNode(result.highlightColor, result.selectedColor);
       } else {
         // blank string or invalid regex
         removeHighlight();
